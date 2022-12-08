@@ -1,0 +1,22 @@
+@model List<Image>
+@{
+
+}
+<h3>Escolha uma imagem para adicionar ao album</h3>
+<div class="gallery-wrapper">
+    @foreach (var image in Model)
+    {
+        <div class="image-wrapper" onclick="showModalImage(this)" data-id="@image.ImageId">
+            <img data-target="#image-modal" src=~/images/@image.Picture alt=@image.Picture class="gallery-img image modal-opener
+              modal-image" />
+            <div class="overlay">
+                <form asp-action="AddImage" asp-controller="Album" asp-route-imageId="@image.ImageId" asp-route-albumId=@ViewData["AlbumId"] method="post">
+
+                <button type="submit" class="icon" >
+                    <img src="~/icons/image-plus.svg" />
+                </button>
+                </form>
+            </div>
+        </div>
+    }
+</div>

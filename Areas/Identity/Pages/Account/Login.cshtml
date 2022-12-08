@@ -1,0 +1,70 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Log in";
+}
+<div id="login-wrapper">
+    <section id="login-image-container">
+
+        <img src="~/images/LoginTransparent.png" alt="" srcset="" class="login-image">
+    </section>
+
+    <section>
+        <div class="login-container">
+            <form id="account" method="post">
+                <h2 class="login-header">Login</h2>
+                <div asp-validation-summary="ModelOnly"></div>
+                @* Email Field *@
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="Input.Email" class="login-label"></label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Input.Email" autocomplete="username" aria-required="true" id="email"
+                            class="login-input" />
+                    </div>
+                    @* Validation *@
+                    <div class="input-validation row">
+                        <div class="col-25"></div>
+                        <div class="col-75"><span asp-validation-for="Input.Email"></span></div>
+                    </div>
+                </div>
+                @* Password Field *@
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="Input.Password" class="login-lable">Senha</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Input.Password" autocomplete="current-password" aria-required="true"
+                            id="password" class="login-input" />
+                    </div>
+                    @* Validation *@
+                    <div class="col-25"></div>
+                    <div class="col-75"><span asp-validation-for="Input.Password" class="input-validation"></span></div>
+                </div>
+                <div class="row">
+                    <label asp-for="Input.RememberMe">Lembre-se de mim</label>
+                    <input asp-for="Input.RememberMe" />
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" class="login-help-link" asp-page="./ForgotPassword">Esqueceu a senha?</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" class="login-help-link" asp-page="./ResendEmailConfirmation">Reenviar confirmação de email</a>
+                    </p>
+                </div>
+                <br>
+                @* Submit *@
+                <div class="row">
+                    <div class="col-25"></div>
+                    <div class="col-50">
+                        <input type="submit" value="Entrar" class="login-submit">
+                    </div>
+                    <div class="col-25"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,26 @@
+@model Album
+@{
+
+}
+<div class="gallery-wrapper">
+
+  @if (Model is not null)
+  {
+    <a asp-action="SelectImage" asp-controller="Image" asp-route-id="@Model.AlbumId">
+      <img src="~/icons/add_circle_24dp.svg" alt="Nova Imagem" />
+    </a>
+    @foreach (var albumImage in Model.Images)
+    {
+      <div class="image-wrapper">
+        <img src=~/images/@albumImage.Picture class="gallery-img image modal-opener
+    modal-image" />
+        <div class="overlay">
+          <a asp-action="DeleteImage" asp-controller="Album" class="icon">
+            <img src="~/icons/delete.svg" />
+          </a>
+        </div>
+      </div>
+    }
+
+  }
+</div>

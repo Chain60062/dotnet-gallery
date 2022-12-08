@@ -1,0 +1,20 @@
+@model ImageViewModel
+<div id="add-image-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Nova Imagem</h2>
+    </div>
+    <div class="modal-body">
+      <form asp-action="Create" asp-controller="Image" method="post" enctype="multipart/form-data">
+        <label asp-for="PictureFile"></label>
+        <input asp-for="PictureFile" accept="image/jpg,image/png,image/jpeg" aria-required="true" required />
+        <span asp-validation-for="PictureFile" style="color: red;"></span>
+        <div class="modal-footer">
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/navbar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/gallery.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Gallery.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    @if (ViewBag.Home is not null)
+    {
+        <partial name="_NavPartial" />
+    }
+    @* Main *@
+    <main role="main">
+        @RenderBody()
+    </main>
+    @* Footer *@
+    <footer>
+        <div>
+            &copy; @DateTime.Now.Year - Gallery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/js/fetch.js" type="text/javascript"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
+

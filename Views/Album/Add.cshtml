@@ -1,0 +1,36 @@
+@model List<Image> 
+@{
+
+}
+<div class="gallery-wrapper">
+  @foreach (var image in Model) 
+  {
+  <div
+    class="image-wrapper"
+    onclick="showModalImage(this)"
+    data-id="@image.ImageId"
+  >
+    <img data-target="#image-modal" src=~/images/@image.Picture
+    alt=@image.Picture class="gallery-img image modal-opener modal-image"
+    onclick="called()" />
+    <div class="overlay">
+      <a
+        asp-action="Delete"
+        asp-controller="Image"
+        asp-route-id="@image.ImageId"
+        class="icon"
+      >
+        <img src="~/icons/delete.svg" alt="" />
+      </a>
+      <a
+        asp-action="Add"
+        asp-controller="Album"
+        asp-route-id="@image.ImageId"
+        class="icon"
+      >
+        <img src="~/icons/square-rounded-plus.svg" alt="Novo Album" />
+      </a>
+    </div>
+  </div>
+  }
+</div>

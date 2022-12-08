@@ -1,0 +1,20 @@
+@model AlbumViewModel
+<div id="add-album-modal" class="modal">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Editar Álbum</h2>
+    </div>
+    <div class="modal-body">
+        <form asp-action="Edit" asp-controller="Album" method="post">
+        <label asp-for="AlbumName">Título do Álbum:</label>
+        <input type="text" asp-for="AlbumName" /><br><br>
+        <label asp-for="Description">Descrição:</label>
+        <input type="text" asp-for="Description" /><br><br>
+        <input type="submit" value="Criar" />
+      </form>
+    </div>
+  </div>
+
+</div>

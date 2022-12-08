@@ -1,0 +1,56 @@
+@model List<Image>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+  ViewData["Title"] = "Início";
+}
+<partial name="_SideNavPartial" />
+
+<div class="gallery-content">
+  <partial name="_NavPartial" />
+
+  <div #gallery-main-header>
+    <h1>Bem vindo @UserManager.GetUserName(User)</h1>
+  </div>
+
+  <img class="modal-opener" href="" data-target="#add-image-modal" src="~/icons/add_circle_24dp.svg"
+    alt="Nova Imagem" />
+  <partial name="_AddImageModal" model="new ImageViewModel()" />
+  <partial name="_GetImageModal" />
+
+  <div class="gallery-wrapper">
+    @foreach (var image in Model)
+    {
+      <div onclick="showModalImage(this)" data-id="@image.ImageId">
+        <img data-target="#image-modal" src=~/images/@image.Picture alt=@image.Picture class="gallery-img image modal-opener
+              modal-image" />
+        <div class="overlay">
+          <a asp-action="Delete" asp-controller="Image" asp-route-id="@image.ImageId" class="icon">
+            <img src="~/icons/delete.svg" alt="" />
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+@* js *@
+<script src="~/js/modal.js" type="text/javascript"></script>
+<script>
+  async function showModalImage(event) {
+    var id = event.dataset.id;
+    let resp = await fetch(
+      `https://localhost:7001/Image/GetOne/${id}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    let img = await resp.json();
+    var imgModal = document.getElementById("img-modal");
+
+    imgModal.src = "/images/" + img.picture;
+  }
+</script>
